@@ -4,7 +4,8 @@ set -eo pipefail
 export HELM_VERSION=${HELM_VERSION:="3.8.0"}
 export HELM_ARTIFACTORY_PLUGIN_VERSION=${HELM_ARTIFACTORY_PLUGIN_VERSION:="v1.0.2"}
 export CHART_VERSION=${CHART_VERSION:-}
-export HELM_REPO=${HELM_REPO:-}
+export HELM_REPO_NAME=${HELM_REPO_NAME:-}
+export HELM_REPO_URL=${HELM_REPO_URL:-}
 export HELM_INSTALLED=${HELM_INSTALLED:false}
 
 print_title(){
@@ -33,10 +34,10 @@ fix_chart_version(){
 }
 
 add_helm_repo(){
-    if [[ -z "$CHART_VERSION" ]]; then
+    if [[ -z "$HELM_REPO_NAME" && -z "$HELM_REPO_URL" ]]; then
         print_title "Adding Helm Repo"
-        echo "${HELM_REPO}"
-        helm repo add ${HELM_REPO}
+        echo "${HELM_REPO_NAME}" "${HELM_REPO_URL}"
+        helm repo add "${HELM_REPO_NAME}" "${HELM_REPO_URL}"
     fi
 }
 
