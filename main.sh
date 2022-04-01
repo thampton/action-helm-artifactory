@@ -9,6 +9,7 @@ source "$SCRIPT_DIR/common.sh"
 
 install_helm
 install_artifactory_plugin
+add_helm_repo
 fix_chart_version
 
 case $1 in
