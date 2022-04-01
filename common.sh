@@ -5,6 +5,7 @@ export HELM_VERSION=${HELM_VERSION:="3.8.0"}
 export HELM_ARTIFACTORY_PLUGIN_VERSION=${HELM_ARTIFACTORY_PLUGIN_VERSION:="v1.0.2"}
 export CHART_VERSION=${CHART_VERSION:-}
 export HELM_REPO=${HELM_REPO:-}
+export HELM_INSTALLED=${HELM_INSTALLED:false}
 
 print_title(){
     echo "#####################################################"
@@ -44,6 +45,7 @@ get_helm() {
     curl -L "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" | tar xvz
     chmod +x linux-amd64/helm
     sudo mv linux-amd64/helm /usr/local/bin/helm
+    export HELM_INSTALLED=true
 }
 
 install_helm() {
@@ -65,7 +67,9 @@ install_artifactory_plugin(){
 
 remove_helm(){
     helm plugin uninstall push-artifactory
-    sudo rm -rf /usr/local/bin/helm
+    if [ "$HELM_INSTALLED" = true ] ; then
+        sudo rm -rf /usr/local/bin/helm
+    fi    
 }
 
 helm_dependency(){
