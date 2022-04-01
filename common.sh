@@ -42,7 +42,7 @@ add_helm_repo(){
     && helm repo add helm-charts-external https://raw.githubusercontent.com/OpenGov/helm-charts-external/master/ \
     && helm repo add botkube https://infracloudio.github.io/charts \
     && helm repo add external-dns https://charts.bitnami.com/bitnami \
-    && helm repo add aws-load-balancer-controller https://aws.github.io/eks-charts \
+    && helm repo add aws-load-balancer-controller https://aws.github.io/eks-charts
 }
 
 get_helm() {
