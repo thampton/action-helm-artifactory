@@ -36,7 +36,7 @@ add_helm_repo(){
     if [[ -z "$CHART_VERSION" ]]; then
         print_title "Adding Helm Repo"
         echo "${HELM_REPO}"
-        helm repo add "${HELM_REPO}"
+        helm repo add ${HELM_REPO}
     fi
 }
 
