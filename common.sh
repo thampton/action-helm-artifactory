@@ -68,7 +68,7 @@ install_artifactory_plugin(){
 
 remove_helm(){
     helm plugin uninstall push-artifactory
-    if [ "$HELM_INSTALLED" = true ] ; then
+    if [["$HELM_INSTALLED" = true]]; then
         sudo rm -rf /usr/local/bin/helm
     fi    
 }
