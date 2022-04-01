@@ -6,6 +6,10 @@ branding:
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-python@v2
-    - run: ${{ github.action_path }}/main.sh
+    - uses: actions/setup-python@v3
+    - run: ${{ github.action_path }}/main.sh ${{ inputs.action }}
       shell: bash
+inputs:
+  action:
+    required: true
+    description: "Action to perform: [check, dependency, lint, package, check_push, push]"
