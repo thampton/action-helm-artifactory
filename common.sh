@@ -34,11 +34,15 @@ fix_chart_version(){
 }
 
 add_helm_repo(){
-    echo "${HELM_REPO_NAME}" "${HELM_REPO_URL}"
-    if [[ -z "$HELM_REPO_NAME" ]] && [[ -z "$HELM_REPO_URL" ]]; then
-        print_title "Adding Helm Repo"
-        helm repo add "${HELM_REPO_NAME}" "${HELM_REPO_URL}"
-    fi
+    helm repo add stable 'https://charts.helm.sh/stable' \
+    && helm repo add incubator 'https://charts.helm.sh/incubator' \
+    && helm repo add jfrog 'https://charts.jfrog.io/' \
+    && helm repo add jetstack https://charts.jetstack.io \
+    && helm repo add codecentric https://codecentric.github.io/helm-charts \
+    && helm repo add helm-charts-external https://raw.githubusercontent.com/OpenGov/helm-charts-external/master/ \
+    && helm repo add botkube https://infracloudio.github.io/charts \
+    && helm repo add external-dns https://charts.bitnami.com/bitnami \
+    && helm repo add aws-load-balancer-controller https://aws.github.io/eks-charts \
 }
 
 get_helm() {
