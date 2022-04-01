@@ -34,7 +34,7 @@ fix_chart_version(){
 }
 
 add_helm_repo(){
-    if [[ -z "$HELM_REPO_NAME" && -z "$HELM_REPO_URL" ]]; then
+    if [[ -z "$HELM_REPO_NAME" ]] && [[ -z "$HELM_REPO_URL" ]]; then
         print_title "Adding Helm Repo"
         echo "${HELM_REPO_NAME}" "${HELM_REPO_URL}"
         helm repo add "${HELM_REPO_NAME}" "${HELM_REPO_URL}"
